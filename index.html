@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <title>Assignment 12</title>
+        <script src="code.js"></script>
+        <link rel="stylesheet" href="style.css" type="text/css">
+    </head>
+
+    <body>
+
+    <input type="text">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <title>Street Fighter</title>
+    </head>
+
+
+    <body>
+    <script>
+
+        function Sleep( sleepDuration )
+        {
+            var now = new Date().getTime();
+            while(new Date().getTime() < now + sleepDuration){ /* do nothing */ }
+        }
+
+        function Punch ()
+        {
+            console.log("========================");
+            console.log("  ('-')		  (':')");
+            console.log("   | |==>       ) |-->");
+            console.log("   * *	 	    * *");
+            console.log("========================");
+        }
+
+        function Kick()
+        {
+            console.log("========================");
+            console.log("  ('-')		  (':')");
+            console.log("   | |->     ??) |->");
+            console.log("   * *//..	 	* *");
+            console.log("========================");
+        }
+
+        function Hadokin()
+        {
+            console.log("========================");
+            console.log("  ('-')		    (?-*)");
+            console.log("  <| |->        <| |-?");
+            console.log("   * *    	 	 ! *");
+            console.log("========================");
+        }
+        function Jump()
+        {
+            console.log("========================");
+            console.log("  ('-')		    (*!*)");
+            console.log("  <| |->        <| |->");
+            console.log("   ___    	 	 * *");
+            console.log("========================");
+        }
+
+        function Spcial_Attack()
+        {
+            console.log("========================");
+            console.log("  ('-')		     (???)");
+            console.log("  <| |->        <(??)>");
+            console.log("   * *    	 	 ! !");
+            console.log("========================");
+        }
+        function player_attack(a)
+        {
+            switch(a)
+            {
+                case "kick":
+                {
+                    Kick();
+                    break;
+                }
+                case "punch":
+                {
+                    Punch();
+                    break;
+                }
+                case "hadokin":
+                {
+                    Hadokin();
+                    break;
+                }
+                case "special":
+                {
+                    Spcial_Attack();
+                    break;
+                }
+                case "jump":
+                {
+                    Jump();
+                    break;
+                }
+            }
+        }
+        function health(a,b)
+        {
+            if(a=="kick")
+            {
+                b=b-10;
+            }
+            else if(a=="punch")
+            {
+                b=b-10;
+            }
+            else if(a=="special")
+            {
+                b=b-20;
+            }
+            else if(a=="hadokin")
+            {
+                b=b-15;
+            }
+            else (a=="jump")
+            {
+                b=b-0;
+            }
+            return b;
+        }
+
+        var player = ["Adon" , "Biride" , "Eagle" , "Geki" , "Joe", "Lee" , "Mike" , "Chun-Li" , "Dee Jay" , "Fei Long"];
+        var a = Math.random() * 11;
+        var b= Math.floor(a);
+        var hth1 = 100;
+        var hth2 = 100;
+        var act = ["kick","punch","jump","hadokin","special"];
+        console.log("\t\t************************************");
+        console.log("\t\t       ~~STREET FIGHTER~~");
+        console.log("\t\t************************************");
+        Sleep(2000);
+        console.log("INSTRUCTIONS: \nSelect any Player from the list of available \nPlayers and Opponent Player wil be choosen \nby the system.");
+        console.log("Available Attacks are:\n1)Kick \n2)Punch \n3)Hadokin \n4)Jump \n5)Special Attack(Can be used only once) ");
+        console.log("Health Lost in Attacks\n Punch=10% Damage \n Kick=10% Damage \n Jump =0% Damage " +
+            "\n Hadokin=15% Damage \n Special Attack=20% Damage\n\n");
+        Sleep(4000);
+        console.log("Select any Player from the following:");
+        for(var i=0 ; i<player.length ; i++ )
+        {
+            console.log(i + 1 + ")" + player[i]);
+        }
+        Sleep(3000);
+        var player_name = prompt("Enter your Player Name:");
+        var system_player = player[b];
+        console.log("-----------------------");
+        console.log("  You Select: "+player_name);
+        console.log("  **** V/s *****");
+        console.log("  CPU Select: "+system_player);
+        Sleep(2000);
+        console.log("-----------------------");
+        console.log("~~~~~~----** ROUND 1 **----~~~~~~");
+        var act = ["kick","punch","jump","hadokin","special"];
+        Sleep(1000);
+        while(hth1 !== 0 || hth2 != 0)
+        {
+            if(hth1 >1 && hth2 > 1)
+            {
+                var att = prompt("Enter Your Attack:");
+                var x = Math.random() * 5;
+                var y = Math.floor(x);
+                player_attack(att);
+                if (act[y] === "jump") {
+                    console.log(player_name + ":" + att);
+                    console.log("Health: " + hth1);
+                    // player_attack(act[y]);
+                    console.log(system_player + ":" + act[y]);
+                    console.log("Health: " + hth2);
+                }
+                else {
+                    hth1 = health(att, hth1);
+                    if(hth1<0)
+                    {
+                        hth1=0;
+                    }
+                    hth2 = health(act[y], hth2);
+                    if(hth2<0)
+                    {
+                        hth2=0;
+                    }
+                    console.log(player_name + ":" + att);
+                    console.log("Health: " + hth1);
+                    // player_attack(act[y]);
+                    console.log(system_player + ":" + act[y]);
+                    console.log("Health: " + hth2);
+
+                }
+            }
+            else
+            {
+                break;
+
+            }
+            Sleep(1500);
+        }
+        if(hth1==0)
+        {
+//                console.log(act[y]+ "Wins");
+            console.log("~~~~~~----**" +system_player+" Wins**----~~~~~~");
+            alert(system_player+ " Wins");
+        }
+        else
+        {
+
+//                console.log(player_name+ "Wins");
+            console.log("~~~~~~----**" +player_name+" Wins**----~~~~~~");
+            alert(player_name+ " Wins");
+        }
+        console.log("Assignement # 9 \nSheheryar Azmat Siddiqui \nSir Mohammad Kashif Sulaiman \nMWF:8:30 -10:30 ")
+    </script>
+
+    </body>
+
+    </html>
+    
+
+
+    </body>
+
+</html>
